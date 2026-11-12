@@ -243,7 +243,8 @@ const memories = [
         images: [
             "assets/recuerdos/1stdate_1.jpeg",
             "assets/recuerdos/1stdate_2.jpg",
-            "assets/recuerdos/1stdate_3.jpg"
+            "assets/recuerdos/1stdate_3.jpg",
+            "assets/recuerdos/1stdate_4.jpg"
         ],
         date: "9 de noviembre de 2026",
         title: "Nuestro primer día",
