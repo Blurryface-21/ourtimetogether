@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090d1c">
+    <title>our time together A+Y</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+    <canvas id="stars"></canvas>
+
+    <main>
+        <header>
+            <b>✦✧</b>
+            <div class="music-widget">
+                <button class="music-toggle" id="musicToggle" type="button" aria-pressed="false">
+                    <span class="music-icon" aria-hidden="true">♫</span>
+                    <span id="musicLabel">Activar música</span>
+                </button>
+
+                <!-- Panel de reproducción interactivo -->
+                <div class="audio-player-card" id="audioPlayerCard" aria-hidden="true">
+                    <div class="player-peek-tab" id="playerPeekTab" aria-label="Abrir reproductor"
+                        title="Abrir reproductor">
+                        <span class="peek-icon">♫</span>
+                    </div>
+                    <div class="player-header">
+                        <img class="player-cover-art" id="playerCoverArt" src="assets/donttaptheglass.jpg"
+                            alt="Carátula de la canción">
+                        <div class="player-track-info">
+                            <span class="player-track-name" id="playerTrackName">I'll Take Care of You</span>
+                            <span class="player-artist-name" id="playerArtistName">Tyler, The Creator</span>
+                        </div>
+                        <span class="player-wave"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <div class="player-progress-container">
+                        <input type="range" class="player-progress-bar" id="playerProgressBar" min="0" max="100"
+                            value="0" step="0.1" aria-label="Línea de tiempo de la canción">
+                        <div class="player-times">
+                            <span id="playerCurrentTime">0:00</span>
+                            <span id="playerDuration">0:00</span>
+                        </div>
+                    </div>
+
+                    <div class="player-controls">
+                        <button type="button" class="player-nav-btn" id="playerPrevBtn" aria-label="Canción anterior"
+                            title="Anterior">
+                            <span>⏮</span>
+                        </button>
+                        <button type="button" class="player-nav-btn" id="playerNextBtn" aria-label="Canción siguiente"
+                            title="Siguiente">
+                            <span>⏭</span>
+                        </button>
+                    </div>
+
+                    <div class="player-volume-container">
+                        <span class="player-vol-icon" id="playerVolIcon" aria-hidden="true">🔊</span>
+                        <input type="range" class="player-volume-slider" id="playerVolumeSlider" min="0" max="1"
+                            step="0.01" value="1" aria-label="Control de volumen">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="intro">
+            <p class="eyebrow">Desde aquel día</p>
+            <h1>Nuestro tiempo<br><em>juntos.</em></h1>
+            <p class="sub">Cada segundo desde que comenzó nuestra historia.</p>
+        </section>
+
+        <section class="panel">
+            <div class="counter">
+                <div><strong id="years">00</strong><small>años</small></div>
+                <div><strong id="months">00</strong><small>meses</small></div>
+                <div><strong id="days">0</strong><small>días</small></div>
+                <div><strong id="hours">00</strong><small>horas</small></div>
+                <div><strong id="minutes">00</strong><small>minutos</small></div>
+                <div class="seconds"><strong id="seconds">00</strong><small>segundos</small></div>
+            </div>
+
+            <div class="ornament">────── ✦ ──────</div>
+
+            <p class="since">
+                Desde el <b>9 de noviembre de 2026</b><br>
+                <small>hasta siempre mi amor</small>
+            </p>
+        </section>
+
+        <section class="message">
+            <b>✧</b>
+            <p>Yo sé que el tiempo es algo que no importa mientras estemos juntos, incluso qusiera detenerlo y estar
+                contigo siempre,</p>
+            <p>pero también sé que cada segundo a tu lado es lo más valioso del mundo, y por eso quiero contar cada uno.
+            </p>
+            <small>Te amo Ali</small>
+        </section>
+
+        <!-- Sección del Álbum de Recuerdos -->
+        <section class="memories-section" id="recuerdos">
+            <header class="memories-header">
+                <b>✦</b>
+                <i></i>
+            </header>
+            <div class="memories-intro">
+                <h2>Nuestros Recuerdos</h2>
+                <p>Cada cita, cada risa, cada beso y cada momento a tu ladito.</p>
+            </div>
+
+            <!-- Contenedor dinámico de recuerdos -->
+            <div id="memories-container" class="memories-container"></div>
+        </section>
+
+        <!-- Lightbox / Visor de Fotografías -->
+        <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de recuerdo"
+            aria-hidden="true">
+            <div class="lightbox-backdrop"></div>
+            <div class="lightbox-dialog">
+                <button type="button" class="lightbox-btn lightbox-close" aria-label="Cerrar vista ampliada">✕</button>
+                <button type="button" class="lightbox-btn lightbox-prev" aria-label="Recuerdo anterior">‹</button>
+                <button type="button" class="lightbox-btn lightbox-next" aria-label="Recuerdo siguiente">›</button>
+
+                <figure class="lightbox-figure">
+                    <div class="lightbox-image-wrap">
+                        <img id="lightbox-img" src="" alt="">
+                    </div>
+                    <figcaption class="lightbox-caption">
+                        <time id="lightbox-date" class="lightbox-date"></time>
+                        <h3 id="lightbox-title" class="lightbox-title"></h3>
+                        <p id="lightbox-desc" class="lightbox-desc"></p>
+                        <span id="lightbox-counter" class="lightbox-counter"></span>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <footer>
+
+        </footer>
+    </main>
+
+    <!-- Elemento de audio para la lista de reproducción -->
+    <audio id="audioPlayer" preload="metadata"></audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
